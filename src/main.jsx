@@ -10,6 +10,7 @@ const queryClient = new QueryClient()
 const theme = {
   mainColor: "#44355B",
   secondaryColor: "#DEB841",
+  neutralColor: "#8D99AE"
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
