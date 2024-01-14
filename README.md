@@ -1,8 +1,16 @@
-# React + Vite
+# O que ver hoje?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O que ver hoje? Tá no tédio e quer saber de alguns filmes legais para ver hoje?
+Acesse o site e descubra filmes incríveis!
 
-Currently, two official plugins are available:
+## Technlogies used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Vite + React
+- TMDB API (The Movie Data Base)
+- Axios
+- Styled-components
+- Framer motion
+
+## Credits
+
+This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.
