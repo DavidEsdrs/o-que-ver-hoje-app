@@ -20,15 +20,35 @@ const SurpriseCard = styled.div`
   height: 300px;
   background: linear-gradient(to bottom right, ${props => props.theme.neutralColor} 40%, ${props => props.theme.secondaryColor});
   border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  padding: 1rem;
+`
+
+const GenerateButton = styled.button`
+  position: relative;
+  cursor: pointer;
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  background-color: black;
+  color: white;
 `
 
 export function SurpriseMovie() {
   return (
     <Container>
       <SessionTitle>
-        Surpreenda-me
+        Descubra um filme aleatório
       </SessionTitle>
-      <SurpriseCard/>
+      <SurpriseCard>
+        <GenerateButton>
+          Surpreenda-me
+        </GenerateButton>
+      </SurpriseCard>
     </Container>
   )
 }
