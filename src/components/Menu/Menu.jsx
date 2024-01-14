@@ -10,6 +10,7 @@ const Container = styled(motion.div)`
   left: 0;
   background-color: white;
   padding: 1rem;
+  z-index: 10;
 `
 
 export function Menu({ isMenuOpen, setIsMenuOpen }) {
