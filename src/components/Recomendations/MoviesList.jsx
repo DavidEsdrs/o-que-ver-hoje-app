@@ -20,7 +20,7 @@ export function MoviesList() {
   if (isError) return <p>Ocorreu um erro ao carregar as recomendações :(</p>;
 
   return (
-    <Swiper spaceBetween={200} slidesPerView={3}>
+    <Swiper spaceBetween={200} slidesPerView={3} loop>
       <ul>
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
