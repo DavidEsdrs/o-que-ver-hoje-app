@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useState } from "react";
+import { Menu } from "../Menu/Menu";
 
 const Container = styled.header`
   padding: 2rem 1rem;
@@ -28,12 +30,19 @@ const Title = styled.h1`
 `
 
 export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const openMenu = (e) => {
+    setIsMenuOpen(prev => !prev)
+  }
+
   return (
     <Container>
       <Title>
         O que ver hoje?
       </Title>
-      <GiHamburgerMenu size={24} />
+      <GiHamburgerMenu size={24} onClick={openMenu} cursor={"pointer"} />
+      <Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </Container>
   )
 }
