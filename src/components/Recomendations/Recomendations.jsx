@@ -5,12 +5,16 @@ const Container = styled.section`
   padding: 1rem;
 `
 
+const Title = styled.h2`
+  margin-bottom: 1rem;
+`
+
 export function Recomendations() {
   return (
     <Container>
-      <h2>
+      <Title>
         Recomendações
-      </h2>
+      </Title>
       <MoviesList />
     </Container>
   )
