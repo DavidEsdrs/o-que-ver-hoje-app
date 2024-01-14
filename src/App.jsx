@@ -16,8 +16,8 @@ function App() {
     <Container>
       <Header/>
       <List>
-        <Recomendations />
         <SurpriseMovie />
+        <Recomendations />
       </List>
     </Container>
   )
