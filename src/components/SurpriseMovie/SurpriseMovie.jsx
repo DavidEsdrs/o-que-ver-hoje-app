@@ -36,6 +36,40 @@ const GenerateButton = styled.button`
   border: none;
   background-color: black;
   color: white;
+  overflow: hidden;
+  transition: 200ms;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: ${props => props.theme.secondaryColor};
+    overflow: hidden;
+    transition: 200ms;
+  }
+
+  &:hover::before {
+    top: 0;
+  }
+
+  &:hover {
+    color: black;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`
+
+const ButtonText = styled.p`
+  position: relative;
+  z-index: 10;
+  font-size: 14px;
+  font-weight: 800;
 `
 
 export function SurpriseMovie() {
@@ -46,7 +80,9 @@ export function SurpriseMovie() {
       </SessionTitle>
       <SurpriseCard>
         <GenerateButton>
-          Surpreenda-me
+          <ButtonText>
+            Surpreenda-me
+          </ButtonText>
         </GenerateButton>
       </SurpriseCard>
     </Container>
