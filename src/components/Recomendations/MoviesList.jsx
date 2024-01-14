@@ -21,13 +21,11 @@ export function MoviesList() {
 
   return (
     <Swiper spaceBetween={200} slidesPerView={3} loop>
-      <ul>
-        {movies.map((movie) => (
-          <SwiperSlide key={movie.id}>
-            <Movie title={movie.title} poster_path={movie.poster_path} />
-          </SwiperSlide>
-        ))}
-      </ul>
+      {movies.map((movie) => (
+        <SwiperSlide key={movie.id}>
+          <Movie title={movie.title} poster_path={movie.poster_path} />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }
