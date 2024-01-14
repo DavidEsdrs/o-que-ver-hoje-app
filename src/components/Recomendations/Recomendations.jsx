@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { MoviesList } from "./MoviesList"
 
-const Container = styled.div`
+const Container = styled.section`
   padding: 1rem;
 `
 
