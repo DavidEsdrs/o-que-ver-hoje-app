@@ -1,7 +1,8 @@
 import styled, { keyframes } from "styled-components"
 import { useRequestProcessor } from "../../hooks/useRequestProcessor"
-import { motion } from "framer-motion"
+import { motion, useAnimate, useAnimation } from "framer-motion"
 import { server } from "../../services/api";
+import { useEffect } from "react";
 
 const blink = (shadowColor) => keyframes`
   0% {
@@ -16,7 +17,7 @@ const blink = (shadowColor) => keyframes`
 `;
 
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   width: 200px;
   height: 300px;
   background: linear-gradient(to bottom right, ${props => props.theme.neutralColor} 40%, ${props => props.theme.secondaryColor});
@@ -26,7 +27,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: end;
   padding: 1rem;
-  animation: ${props => props.isLoading && blink(props.theme.secondaryColor)} 2s infinite;
+  animation: ${props => props.$isLoading && blink(props.theme.secondaryColor)} 2s infinite;
 `
 
 const GenerateButton = styled.button`
@@ -78,17 +79,21 @@ export function SurpriseCard() {
   const { query } = useRequestProcessor()
   const randomPage = Math.floor(Math.random() * 100);
   const randomMovie = Math.floor(Math.random() * 20);
-  const { data: movie, isLoading, isError } = query(
+  const { data: movie, isLoading, isError, refetch } = query(
     "suprise_movie",
     () => server
       .get(`https://api.themoviedb.org/3/discover/movie?page=${randomPage}&language=pt-BR`)
       .then(res => res.data.results[randomMovie]),
-    { enabled: true },
+    { enabled: false },
   )
+
+  const getMovie = () => {
+    refetch()
+  }
 
   if(isLoading) {
     return (
-      <Container>
+      <Container $isLoading={isLoading}>
         <GenerateButton>
           <ButtonText disabled>
             Surpreenda-me
@@ -99,8 +104,8 @@ export function SurpriseCard() {
   }
 
   return (
-    <Container>
-      <GenerateButton>
+    <Container as={motion.div}>
+      <GenerateButton onClick={getMovie}>
         <ButtonText>
           Surpreenda-me
         </ButtonText>
