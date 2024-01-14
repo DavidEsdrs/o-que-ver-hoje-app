@@ -8,7 +8,9 @@ const Container = styled.div`
 export function Recomendations() {
   return (
     <Container>
-      Recomendações
+      <h2>
+        Recomendações
+      </h2>
       <MoviesList />
     </Container>
   )
