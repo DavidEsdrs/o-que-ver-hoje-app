@@ -1,5 +1,9 @@
 import { useRequestProcessor } from "../../hooks/useRequestProcessor";
 import { server } from "../../services/api";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import styled from "styled-components";
+import { Movie } from "../Movie/Movie";
 
 export function MoviesList() {
   const { query } = useRequestProcessor()
@@ -12,14 +16,18 @@ export function MoviesList() {
     { enabled: true },
   )
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error :(</p>;
+  if (isLoading) return <p>Carregando recomendações...</p>;
+  if (isError) return <p>Ocorreu um erro ao carregar as recomendações :(</p>;
 
   return (
-    <ul>
-      {movies.map((movie) => (
-        <li key={movie.id}>{movie.title}</li>
-      ))}
-    </ul>
+    <Swiper spaceBetween={200} slidesPerView={3}>
+      <ul>
+        {movies.map((movie) => (
+          <SwiperSlide key={movie.id}>
+            <Movie title={movie.title} poster_path={movie.poster_path} />
+          </SwiperSlide>
+        ))}
+      </ul>
+    </Swiper>
   );
 }
