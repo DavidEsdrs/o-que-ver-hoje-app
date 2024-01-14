@@ -18,8 +18,8 @@ const blink = (shadowColor) => keyframes`
 
 
 const Container = styled(motion.div)`
-  width: 200px;
-  height: 300px;
+  width: calc(200px + 1rem);
+  min-height: 300px;
   background: linear-gradient(to bottom right, ${props => props.theme.neutralColor} 40%, ${props => props.theme.secondaryColor});
   border-radius: 25px;
   display: flex;
@@ -75,6 +75,17 @@ const ButtonText = styled.p`
   font-weight: 800;
 `
 
+const Movie = styled.div`
+  margin: 1rem;
+`
+
+const MovieImage = styled.img`
+  width: 200px;
+  border-radius: 10px;
+`
+
+const Title = styled.h3``
+
 export function SurpriseCard() {
   const { query } = useRequestProcessor()
   const randomPage = Math.floor(Math.random() * 100);
@@ -103,8 +114,38 @@ export function SurpriseCard() {
     )  
   }
 
+  if(isError) {
+    return (
+      <Container $isLoading={isLoading}>
+        <GenerateButton>
+          <p>
+            Ocorreu um erro!
+          </p>
+          <ButtonText disabled>
+            Surpreenda-me
+          </ButtonText>
+        </GenerateButton>
+      </Container>
+    )  
+  }
+
   return (
     <Container as={motion.div}>
+      {movie && (
+        <Movie>
+          <MovieImage 
+            src={`https://image.tmdb.org/t/p/w200${movie?.poster_path}`} 
+            alt="" 
+            whileHover={{
+              scale: 1.05
+            }}
+            whileTap={{ scale: 0.98 }}
+          />
+          <Title>
+            {movie?.title}
+          </Title>
+        </Movie>
+      )}
       <GenerateButton onClick={getMovie}>
         <ButtonText>
           Surpreenda-me
