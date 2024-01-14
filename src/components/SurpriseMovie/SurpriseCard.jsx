@@ -49,7 +49,6 @@ const GenerateButton = styled.button`
     top: 100%;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
     background-color: ${props => props.theme.secondaryColor};
     overflow: hidden;
     transition: 200ms;
