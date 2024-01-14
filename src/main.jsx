@@ -4,8 +4,11 @@ import App from './App.jsx'
 import './index.css'
 import { ThemeProvider } from "styled-components"
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import { register } from "swiper/element/bundle"
 
 const queryClient = new QueryClient()
+
+register()
 
 const theme = {
   mainColor: "#44355B",
