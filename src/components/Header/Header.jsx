@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu } from "../Menu/Menu";
 import { FaSearch } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Container = styled.header`
   padding: 2rem 1rem;
@@ -12,18 +13,6 @@ const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  ::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 1rem;
-
-    width: calc(100% - 2rem);
-    height: 1px;
-
-    background-color: #0000002c;
-  }
 `
 
 const Title = styled.h1`
@@ -36,6 +25,10 @@ const Navigation = styled.nav`
   padding: 1rem;
   border-radius: 25px;
   color: white;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `
 
 const List = styled.ul`
@@ -43,7 +36,7 @@ const List = styled.ul`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 50px;
+  gap: 20px;
 `
 
 const InputLabel = styled.label`
@@ -164,18 +157,31 @@ export function Header() {
       <Navigation>
         <List>
           <NavItem>
-            <NavButton>
-              <ButtonText>
-                filmes
-              </ButtonText>
-            </NavButton>
+            <Link to="/home">
+              <NavButton>
+                <ButtonText>
+                  início
+                </ButtonText>
+              </NavButton>
+            </Link>
           </NavItem>
           <NavItem>
-            <NavButton>
-              <ButtonText>
-                séries
-              </ButtonText>
-            </NavButton>
+            <Link to="/filmes">
+              <NavButton>
+                <ButtonText>
+                  filmes
+                </ButtonText>
+              </NavButton>
+            </Link>
+          </NavItem>
+          <NavItem>
+            <Link to="/series">
+              <NavButton>
+                <ButtonText>
+                  séries
+                </ButtonText>
+              </NavButton>
+            </Link>
           </NavItem>
           <li>
             <InputLabel>
