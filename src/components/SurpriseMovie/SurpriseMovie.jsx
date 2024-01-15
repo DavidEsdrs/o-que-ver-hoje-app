@@ -1,10 +1,14 @@
 import styled from "styled-components"
 import { SurpriseCard } from "./SurpriseCard"
+import { useState } from "react"
 
 const Container = styled.section`
   padding: 1rem;
-  width: 100%;
-  background-color: ${props => props.theme.mainColor};
+  width: 1280px;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 25px;
+  background: url(${props => props.$backdrop}) no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,12 +21,18 @@ const SessionTitle = styled.h3`
 `
 
 export function SurpriseMovie() {
+  const [backdrop, setBackdrop] = useState("")
+
+  const setBackdropImage = (bd) => {
+    setBackdrop(bd)
+  }
+
   return (
-    <Container>
+    <Container $backdrop={`https://image.tmdb.org/t/p/original${backdrop}`}>
       <SessionTitle>
         Descubra um filme aleatório
       </SessionTitle>
-      <SurpriseCard />
+      <SurpriseCard updateBackdrop={setBackdropImage} />
     </Container>
   )
 }
