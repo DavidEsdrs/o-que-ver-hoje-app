@@ -8,7 +8,7 @@ const Container = styled.section`
   max-width: 100%;
   margin: 0 auto;
   border-radius: 25px;
-  background: url(${props => props.$backdrop}) no-repeat;
+  background: url(${props => props.$backdrop}) no-repeat center center fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
