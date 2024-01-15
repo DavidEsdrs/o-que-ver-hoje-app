@@ -165,7 +165,7 @@ export function Header() {
   return (
     <Container>
       <LogoContainer>
-        <Logo src="/public/assets/logo.svg" />
+        <Logo src="./src/assets/logo.svg" />
         <Title>
           O que ver hoje?
         </Title>
