@@ -5,6 +5,7 @@ import { Menu } from "../Menu/Menu";
 import { FaSearch } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.svg";
 
 const Container = styled.header`
   padding: 2rem 1rem;
@@ -165,7 +166,7 @@ export function Header() {
   return (
     <Container>
       <LogoContainer>
-        <Logo src="/src/assets/logo.svg" />
+        <Logo src={logo} />
         <Title>
           O que ver hoje?
         </Title>
