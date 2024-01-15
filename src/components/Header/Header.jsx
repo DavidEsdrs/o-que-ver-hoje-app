@@ -15,9 +15,22 @@ const Container = styled.header`
   justify-content: space-between;
 `
 
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const Logo = styled.img`
+  width: 3rem;
+`
+
 const Title = styled.h1`
   font-size: 1.3rem;
   color: ${props => props.theme.mainColor};
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `
 
 const Navigation = styled.nav`
@@ -151,9 +164,12 @@ export function Header() {
 
   return (
     <Container>
-      <Title>
-        O que ver hoje?
-      </Title>
+      <LogoContainer>
+        <Logo src="../../../public/logo.svg" />
+        <Title>
+          O que ver hoje?
+        </Title>
+      </LogoContainer>
       <Navigation>
         <List>
           <NavItem>

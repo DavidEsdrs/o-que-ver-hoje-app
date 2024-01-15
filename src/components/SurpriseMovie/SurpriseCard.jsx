@@ -2,7 +2,8 @@ import styled, { keyframes } from "styled-components"
 import { useRequestProcessor } from "../../hooks/useRequestProcessor"
 import { motion, useAnimate, useAnimation } from "framer-motion"
 import { server } from "../../services/api";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { BackdropContext } from "./SurpriseMovie";
 
 const blink = (shadowColor) => keyframes`
   0% {
@@ -18,9 +19,6 @@ const blink = (shadowColor) => keyframes`
 
 
 const Container = styled(motion.div)`
-  width: calc(200px + 1rem);
-  min-height: 300px;
-  background: linear-gradient(to bottom right, ${props => props.theme.neutralColor} 40%, ${props => props.theme.secondaryColor});
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -28,6 +26,17 @@ const Container = styled(motion.div)`
   justify-content: end;
   padding: 1rem;
   animation: ${props => props.$isLoading && blink(props.theme.secondaryColor)} 2s infinite;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
 `
 
 const GenerateButton = styled.button`
@@ -75,17 +84,26 @@ const ButtonText = styled.p`
 `
 
 const Movie = styled.div`
-  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const MovieImage = styled.img`
   width: 200px;
-  border-radius: 10px;
+  border-radius: 25px;
 `
 
-const Title = styled.h3``
+const Title = styled.h3`
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+`
 
-export function SurpriseCard({ updateBackdrop }) {
+export function SurpriseCard() {
+  const ctx = useContext(BackdropContext)
   const { query } = useRequestProcessor()
   const randomPage = Math.floor(Math.random() * 100);
   const randomMovie = Math.floor(Math.random() * 20);
@@ -97,9 +115,10 @@ export function SurpriseCard({ updateBackdrop }) {
     { enabled: false },
   )
 
+  ctx.setBackdropImage(movie?.backdrop_path)
+
   const getMovie = () => {
     refetch()
-    updateBackdrop(movie.backdrop_path)
   }
 
   if(isLoading) {
@@ -135,7 +154,7 @@ export function SurpriseCard({ updateBackdrop }) {
         <Movie>
           <MovieImage 
             src={`https://image.tmdb.org/t/p/w200${movie?.poster_path}`} 
-            alt="" 
+            alt={`pôster do filme ${movie?.title}`}
             whileHover={{
               scale: 1.05
             }}
