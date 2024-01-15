@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Header } from "./components/Header/Header"
 import { Recomendations } from "./components/Recomendations/Recomendations"
 import { SurpriseMovie } from "./components/SurpriseMovie/SurpriseMovie"
+import { Outlet } from "react-router"
 
 const Container = styled.div``
 
@@ -17,7 +18,7 @@ function App() {
       <Header/>
       <List>
         <SurpriseMovie />
-        <Recomendations />
+        <Outlet />
       </List>
     </Container>
   )

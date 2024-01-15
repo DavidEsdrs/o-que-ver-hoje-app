@@ -85,7 +85,7 @@ const MovieImage = styled.img`
 
 const Title = styled.h3``
 
-export function SurpriseCard() {
+export function SurpriseCard({ updateBackdrop }) {
   const { query } = useRequestProcessor()
   const randomPage = Math.floor(Math.random() * 100);
   const randomMovie = Math.floor(Math.random() * 20);
@@ -99,6 +99,7 @@ export function SurpriseCard() {
 
   const getMovie = () => {
     refetch()
+    updateBackdrop(movie.backdrop_path)
   }
 
   if(isLoading) {

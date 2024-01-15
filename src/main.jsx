@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import { Movies } from "./pages/Movies/Movies.jsx"
 import { Series } from "./pages/Series/Series.jsx"
+import { Recomendations } from "./components/Recomendations/Recomendations.jsx"
 
 const queryClient = new QueryClient()
 
@@ -29,9 +30,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider theme={theme}>
         <BrowserRouter basename="/">
           <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/filmes" element={<Movies />} />
-            <Route path="/series" element={<Series />} />
+            <Route path="/" element={<App />}>
+              <Route path="/home" element={<Recomendations />} />
+              <Route path="/filmes" element={<Movies />} />
+              <Route path="/series" element={<Series />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
