@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter basename="/">
           <Routes>
             <Route path="/" element={<App />}>
-              <Route path="/home" element={<Recomendations />} />
+              <Route path="/" element={<Recomendations />} />
               <Route path="/filmes" element={<Movies />} />
               <Route path="/series" element={<Series />} />
             </Route>
