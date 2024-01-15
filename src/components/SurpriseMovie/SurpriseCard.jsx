@@ -19,8 +19,6 @@ const blink = (shadowColor) => keyframes`
 
 
 const Container = styled(motion.div)`
-  width: calc(200px + 1rem);
-  min-height: 300px;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -28,6 +26,17 @@ const Container = styled(motion.div)`
   justify-content: end;
   padding: 1rem;
   animation: ${props => props.$isLoading && blink(props.theme.secondaryColor)} 2s infinite;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
 `
 
 const GenerateButton = styled.button`
@@ -106,7 +115,7 @@ export function SurpriseCard() {
     { enabled: false },
   )
 
-  ctx.setBackdropImage(movie?.poster_path)
+  ctx.setBackdropImage(movie?.backdrop_path)
 
   const getMovie = () => {
     refetch()
