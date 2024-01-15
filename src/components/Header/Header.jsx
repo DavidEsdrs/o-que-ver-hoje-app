@@ -173,7 +173,7 @@ export function Header() {
       <Navigation>
         <List>
           <NavItem>
-            <Link to="/home">
+            <Link to="/">
               <NavButton>
                 <ButtonText>
                   início
