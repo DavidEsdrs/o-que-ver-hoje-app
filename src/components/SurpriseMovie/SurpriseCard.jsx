@@ -27,6 +27,7 @@ const Container = styled(motion.div)`
   padding: 1rem;
   animation: ${props => props.$isLoading && blink(props.theme.secondaryColor)} 2s infinite;
   position: relative;
+  z-index: 10;
 
   &::before {
     content: '';
