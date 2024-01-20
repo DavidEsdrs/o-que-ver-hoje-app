@@ -15,6 +15,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {  
+  background: #1f1a24;
+  color: white;
+}
+
 ul, ol {
   list-style: none;
 }
