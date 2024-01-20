@@ -110,7 +110,7 @@ export function SurpriseCard() {
   const { data: movie, isLoading, isError, refetch } = query(
     "suprise_movie",
     () => server
-      .get(`https://api.themoviedb.org/3/discover/movie?page=${randomPage}&language=pt-BR`)
+      .get(`https://api.themoviedb.org/3/discover/movie?page=${randomPage}&language=pt-BR&include_adult=false`)
       .then(res => res.data.results[randomMovie]),
     { enabled: false },
   )
