@@ -4,35 +4,39 @@ import { createContext, useContext, useState } from "react"
 
 const Container = styled.section`
   padding: 1rem;
-  width: 1280px;
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
-  /* background-color: ${props => props.theme.mainColor}; */
+  height: 80vh;
   
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   position: relative;
 
   overflow: hidden;
-`
 
-const SessionTitle = styled.h3`
-  margin: 0 auto;
-  color: white;
-  margin-bottom: 1rem;
+  &::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    z-index: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 1) 100%);
+    pointer-events: none;
+  }
 `
 
 const BackdropImage = styled.img`
   position: absolute;
   width: 100%;
 
-  /* Add the blur effect */
   filter: blur(8px);
   -webkit-filter: blur(8px);
 
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -51,9 +55,6 @@ export function SurpriseMovie() {
     <BackdropContext.Provider value={{ setBackdropImage }}>
       <Container $backdrop={`https://image.tmdb.org/t/p/original${backdrop}`}>
         {backdrop && <BackdropImage src={`https://image.tmdb.org/t/p/original${backdrop}`} />}
-        <SessionTitle>
-          Descubra um filme aleatório
-        </SessionTitle>
         <SurpriseCard />
       </Container>
     </BackdropContext.Provider>
