@@ -27,7 +27,6 @@ const Logo = styled.img`
 
 const Title = styled.h1`
   font-size: 1.3rem;
-  color: ${props => props.theme.mainColor};
 
   @media (max-width: 800px) {
     display: none;
