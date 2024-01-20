@@ -25,7 +25,7 @@ const Container = styled.section`
     left: 0;
     height: 100%;
     z-index: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 1) 70%);
     pointer-events: none;
   }
 `
