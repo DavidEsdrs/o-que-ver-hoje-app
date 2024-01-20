@@ -44,7 +44,7 @@ const GenerateButton = styled.button`
   position: relative;
   cursor: pointer;
   padding: 10px 15px;
-  width: 100%;
+  width: 300px;
   border-radius: 20px;
   border: none;
   background-color: black;
