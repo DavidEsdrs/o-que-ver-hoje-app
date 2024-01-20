@@ -4,6 +4,7 @@ import { motion, useAnimate, useAnimation } from "framer-motion"
 import { server } from "../../services/api";
 import { useContext, useEffect } from "react";
 import { BackdropContext } from "./SurpriseMovie";
+import { useNavigate } from "react-router-dom";
 
 const blink = (shadowColor) => keyframes`
   0% {
@@ -88,11 +89,13 @@ const Movie = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `
 
 const MovieImage = styled.img`
   width: 200px;
   border-radius: 25px;
+  cursor: pointer;
 `
 
 const Title = styled.h3`
@@ -104,6 +107,7 @@ const Title = styled.h3`
 `
 
 export function SurpriseCard() {
+  const navigate = useNavigate()
   const ctx = useContext(BackdropContext)
   const { query } = useRequestProcessor()
   const randomPage = Math.floor(Math.random() * 100);
@@ -120,6 +124,10 @@ export function SurpriseCard() {
 
   const getMovie = () => {
     refetch()
+  }
+
+  const goToMovie = () => {
+    navigate(`/filmes/${movie?.id}`, { state: { movie } })
   }
 
   if(isLoading) {
@@ -153,7 +161,8 @@ export function SurpriseCard() {
     <Container as={motion.div}>
       {movie && (
         <Movie>
-          <MovieImage 
+          <MovieImage  
+            onClick={goToMovie}
             src={`https://image.tmdb.org/t/p/w200${movie?.poster_path}`} 
             alt={`pôster do filme ${movie?.title}`}
             whileHover={{
