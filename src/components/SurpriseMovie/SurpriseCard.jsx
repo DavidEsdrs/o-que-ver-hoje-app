@@ -4,6 +4,7 @@ import { motion, useAnimate, useAnimation } from "framer-motion"
 import { server } from "../../services/api";
 import { useContext, useEffect } from "react";
 import { BackdropContext } from "./SurpriseMovie";
+import { useNavigate } from "react-router-dom";
 
 const blink = (shadowColor) => keyframes`
   0% {
@@ -27,6 +28,7 @@ const Container = styled(motion.div)`
   padding: 1rem;
   animation: ${props => props.$isLoading && blink(props.theme.secondaryColor)} 2s infinite;
   position: relative;
+  z-index: 10;
 
   &::before {
     content: '';
@@ -43,7 +45,7 @@ const GenerateButton = styled.button`
   position: relative;
   cursor: pointer;
   padding: 10px 15px;
-  width: 100%;
+  width: 300px;
   border-radius: 20px;
   border: none;
   background-color: black;
@@ -87,11 +89,13 @@ const Movie = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `
 
 const MovieImage = styled.img`
   width: 200px;
   border-radius: 25px;
+  cursor: pointer;
 `
 
 const Title = styled.h3`
@@ -103,6 +107,7 @@ const Title = styled.h3`
 `
 
 export function SurpriseCard() {
+  const navigate = useNavigate()
   const ctx = useContext(BackdropContext)
   const { query } = useRequestProcessor()
   const randomPage = Math.floor(Math.random() * 100);
@@ -110,7 +115,7 @@ export function SurpriseCard() {
   const { data: movie, isLoading, isError, refetch } = query(
     "suprise_movie",
     () => server
-      .get(`https://api.themoviedb.org/3/discover/movie?page=${randomPage}&language=pt-BR`)
+      .get(`https://api.themoviedb.org/3/discover/movie?page=${randomPage}&language=pt-BR&include_adult=false`)
       .then(res => res.data.results[randomMovie]),
     { enabled: false },
   )
@@ -119,6 +124,10 @@ export function SurpriseCard() {
 
   const getMovie = () => {
     refetch()
+  }
+
+  const goToMovie = () => {
+    navigate(`/filmes/${movie?.id}`, { state: { movie } })
   }
 
   if(isLoading) {
@@ -152,7 +161,8 @@ export function SurpriseCard() {
     <Container as={motion.div}>
       {movie && (
         <Movie>
-          <MovieImage 
+          <MovieImage  
+            onClick={goToMovie}
             src={`https://image.tmdb.org/t/p/w200${movie?.poster_path}`} 
             alt={`pôster do filme ${movie?.title}`}
             whileHover={{
